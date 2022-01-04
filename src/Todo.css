@@ -1,0 +1,277 @@
+:root{
+    --primaryColor: linear-gradient(to bottom, #ff5252, #ff0000);
+    --confirmedColor: rgb(0, 255, 0);
+    --grayColor: #adadad;
+}
+
+#root{
+    background-color: #00000023;
+    height: fit-content;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    position: relative;
+    margin: 0px auto;
+    max-width: 500px;
+    height: 100vh;
+    background-color: white;
+    border-radius: 30px;
+    overflow: auto;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.404);
+}
+
+.todoTitle{
+    font-size: 2.5em;
+    color: var(--grayColor);
+}
+form{
+    width: 85%;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.formStyle{
+    border: 3px solid;
+    border-image-slice: 1;
+    border-image-source: var(--primaryColor);
+    height: 45px;
+}
+
+
+/* List */
+.list{
+    height: fit-content;
+    overflow: auto;
+}
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    padding: 17px;
+    margin-top: 12px;
+    border: none;
+    border-left: 4px solid #ff5252;
+    list-style-type: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 500ms;
+    /* box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.404); */
+}
+.card:nth-child(even){
+    background-color: rgba(143, 143, 143, 0.082);
+}
+.card:hover{
+    height: 77px;
+}
+
+
+
+/* ----- CHECKBOX ----- */
+.card input[type="checkbox"]{
+    width: 0px;
+    height: 0px;
+    cursor: pointer;
+    outline: none;
+}
+/* before is the checkbox circle */
+.card input[type="checkbox"]::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 3px solid black;
+    cursor: pointer;
+    transition: 300ms;
+}
+.card input[type="checkbox"]:checked:before{
+    border-color: var(--confirmedColor);
+}
+
+/* after is the confirmed signal */
+.card input[type="checkbox"]::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+    width: 23px;
+    height: 23px;
+    border:4px solid;
+    opacity: 0;
+    transition: 300ms;
+}
+.card input[type="checkbox"]:checked::after{
+    border-color: var(--confirmedColor);
+    width: 13px;
+    transform: rotate(45deg) translate(-6px, -15px);
+    border-radius: 0%;
+    border-left: none;
+    border-top: none;
+    opacity: 1;
+}
+/* -------------------- */
+
+
+
+/* Paragraph */
+.taskTitle{
+    max-width: 100%;
+    font-size: 1.4em;
+    margin-left: 28px;
+    transition: 500ms;
+}
+.taskDone p{
+    text-decoration: line-through;
+    color: var(--confirmedColor);
+}
+
+
+
+
+/*---------- Buttons ----------*/
+/* Only mobile buttons*/
+.mobileBtn{
+    display: none;
+}
+#hamburguerBtn{
+    position: absolute;
+    top: 11px;
+    right: 35px;
+    font-size: 3em;
+    background: none;
+    border: none;
+}
+#addBtn{
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55px;
+    height: 55px;
+    font-size: 2.7em;
+    background-image: var(--primaryColor);
+    color: white;
+    border-radius: 150%;
+    z-index: 10;
+}
+
+/* Form Btn */
+form> button{
+    background-image: var(--primaryColor);
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-weight: bold;
+    transition: .4s;
+}
+form>button:hover{
+    color: rgb(214, 214, 214);
+}
+
+/* trash btn */
+.trashBtn{
+    background: none;
+}
+.trashBtn:hover{
+    color: red;
+    transition: 450ms;
+}
+.trashBtn > i{
+    font-size: 1.5em;
+}
+
+
+
+
+/* 4K */
+@media screen and (min-width: 1800px) {
+    .container{
+        max-width: 900px;
+        padding: 35px!important;
+    }
+    form{
+        margin-bottom: 55px;
+    }
+    .formStyle, form input{
+        height: 90px;
+        font-size: 2.5em;
+    }
+    .todoTitle{
+        font-size: 5em;
+    }
+
+    .card{
+        margin-bottom: 23px;
+        height: 170px;
+        border-left: 8px solid #ff5252;
+    }
+    .card:hover{
+        height: 190px;
+    }
+
+    
+    /* ----- CHECKBOX ----- */
+    .card input[type="checkbox"]{
+        margin-right: 30px;
+    }
+    /* before is the checkbox circle */
+    .card input[type="checkbox"]::before{
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8px;
+        width: 54px;
+        height: 54px;
+        border: 6px solid black;
+    }
+    
+    /* after is the confirmed signal */
+    .card input[type="checkbox"]::after{
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8px;
+        width: 56px;
+        height: 56px;
+        border: 10px solid;
+  
+    }
+    .card input[type="checkbox"]:checked::after{
+        width: 26px;
+        transform: rotate(45deg) translate(-10px, -40px) ;
+    }
+    /* ------------------------ */
+
+
+    .taskTitle{
+        font-size: 4em;
+    }
+    .trashBtn i{
+        font-size: 4em;
+    }
+    
+}
+
+
+/* Mobile device */
+@media screen and (max-width: 450px) {
+    .container{
+        border-radius: 0%;
+    }
+    .mobileBtn{
+        display: flex;
+    }
+    .taskTitle{
+        font-size: 1.3em;
+    }
+}
