@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Sidebar from "./Components/Sidebar"
 import List from "./Components/List";
 import TodoForm from "./Components/TodoForm";
 import Item from "./Components/Item"
@@ -8,24 +9,25 @@ const SAVED_ITEMS="savedItems";
 
 function Todo(){
 
+ 
+    // ---------- TASK FUNCTIONS ---------- //
     const [items, setItems] = useState([]);
 
-    
-
+    // When opening the app, if there is any task saved on the localStorage, add it to the list.
     useEffect(()=>{
         let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
         if(savedItems){
             setItems(savedItems);
         }
-        
-
     },[]);
 
+    // Every time the array with the items update, save it to the localStorage
     useEffect(()=>{
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
     }, [items]);
 
 
+    // Adding new task
     function onAddItem(text) {
 
         let it = new Item(text);
@@ -33,7 +35,7 @@ function Todo(){
         setItems([it, ...items]);
 
     }
-    
+    // Deleting a task
     function onItemDeleted(item) {
         
         let filteredItems = items.filter(it => it.id !== item.id)
@@ -45,22 +47,30 @@ function Todo(){
         item.done=value;
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
     }
+     // ------- CLOSING TASK FUNCTIONS -------- //
 
+
+     function toggleSidebar(){
+        const sidebar = document.getElementsByClassName("sidebar")[0];
+        sidebar.classList.toggle("showSidebar");
+        
+
+        const overlay = document.getElementsByClassName("overlay")[0]
+        overlay.classList.toggle("overlayActive");
+     }
 
 
     return (
-        <div className="container px-3 pt-5">
+        <div className="container px-0 pt-1">
 
-            <TodoForm onAddItem={onAddItem}></TodoForm>
+            {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
 
-            {/* -----Mobile buttons----- */}
-            <button className="mobileBtn" id="hamburguerBtn"><i className="bi bi-list"></i></button>
-
-            <button className="mobileBtn justify-content-center align-items-center" id="addBtn"><i className="bi bi-plus"></i></button>
+            {/* -----Mobile elements----- */}
+            <div className="overlay"></div>
+            <button className="mobileBtn" id="hamburguerBtn" onClick={toggleSidebar}><i className="bi bi-list"></i></button>
             {/* ------------------------ */}
 
-
-            <h1 className="todoTitle mt-4 mb-0 ">Todo</h1>
+            <Sidebar toggleSidebar={toggleSidebar}></Sidebar>
 
             <List updateTaskDone={updateTaskDone} onItemDeleted={onItemDeleted} items={items}></List>
 
