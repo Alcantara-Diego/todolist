@@ -1,20 +1,38 @@
 import React from 'react';
-import Sidebar from './Sidebar';
 
 function SidebarOptions(props){
+
+
+    function showInputField(){
+        let inputField = document.getElementsByClassName("newItemField")[0];
+        inputField.classList.add("showNewItemField");
+
+        props.toggleSidebar();
+
+        // Focus on the input value after some time to avoid animation bugs 
+        setTimeout(()=>{document.getElementById("inputValue").focus();}, 800);
+    }
+
+    function showList(){
+        props.hideInputField();
+        props.toggleSidebar()
+    }
+
+
+
+
     return(
 
-        <div className="sidebar-optionsDiv mt-4 px-2">
+        <div className="sidebar-optionsDiv px-2">
 
                 <input type="radio" name="sidebarOptions" id="newTasksOption"></input>
-                <label htmlFor="newTasksOption"><i className="bi bi-plus"></i> Create new task</label>
+                <label htmlFor="newTasksOption" onClick={showInputField}><i className="bi bi-plus"></i> Create new task
+                </label>
                 <hr></hr>
 
-                <input type="radio" name="sidebarOptions" id="allTasksOption"></input>
-                <label htmlFor="allTasksOption"  checked><i className="bi bi-check-all"></i> All tasks</label>
 
-                <input type="radio" name="sidebarOptions" id="todayOption"></input>
-                <label htmlFor="todayOption">
+                <input type="radio" name="sidebarOptions" id="todayOption" defaultChecked></input>
+                <label htmlFor="todayOption" onClick={showList}>
                     <i className="bi bi-calendar2"></i> Today
                 </label>
 

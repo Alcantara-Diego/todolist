@@ -1,7 +1,9 @@
 :root{
     --primaryColor: #ff5252;
+    --primaryLinearGradient: linear-gradient(to bottom, #ff5252, #bd4040);;
     --confirmedColor: rgb(0, 255, 0);
     --grayColor: #adadad;
+    --mainDivWidth: 70%;
 }
 
 #root{
@@ -34,21 +36,63 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.048);
+    background-color: rgba(0, 0, 0, 0.226);
     z-index: 50;
 }
+.alert{
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    font-size: 1.3em;
+    z-index: 1000;
+}
+@keyframes showAlert{
+    0%{
+        top: -15%;
+    }
+    20%{
+        top: 35px;
+    }
+    80%{
+        top: 35px;
+    }
+    100%{
+        top: -15%;
+    }
+
+}
 /* ---------------------------------------------- */
+.newItemField{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 25px 10px;
+    width: var(--mainDivWidth);
+    background-color: white;
+    z-index: 100;
+    transition: 0.8s;
+}
+.showNewItemField{
+    top: 0%;
+}
+
 form{
     width: 85%;
     font-size: 1.3em;
     font-weight: bold;
+    padding: 20px;
 }
-.formStyle{
-    border: 3px solid;
-    border-image-slice: 1;
-    border-image-source: var(--primaryColor);
-    height: 45px;
+form input[type="text"]{
+
+    font-size: 1.2em;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.075);
 }
+
 /* ---------------------------------------------- */
 
 .fullScreenHeight{
@@ -59,6 +103,7 @@ form{
     display: flex;
     flex-direction: column;
     background-color: white;
+    color: black;
     border-right: 2px solid rgba(0, 0, 0, 0.144);
     transition: 0.5s;
     z-index: 100;
@@ -75,6 +120,7 @@ form{
 .sidebar-optionsDiv{
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 .sidebar input[type="radio"]{
     display: none;
@@ -102,15 +148,42 @@ form{
 
 /*--------- List ----------*/
 .listContainer{
-    width: 70%;
-    padding: 0 15px;
+    width: var(--mainDivWidth);
+    background-color: rgb(248, 248, 248);
     overflow: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
+.listHeader{
+    position: relative;
+    background-image: var(--primaryLinearGradient);
+    height: 20vh;
+    margin-bottom: 80px;
+    color: white;
+    text-align: center;
+    overflow: visible;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 2px 3px 1px;
+}
+
+.listPanel{
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 100px;
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
 .list{
     height: 100vh;
     overflow: auto;
 }
-
 .card{
     position: relative;
     display: flex;
@@ -137,7 +210,8 @@ form{
 /*-------------------------*/
 
 
-/* ----- TASK CHECKBOX ----- */
+/* ----- CHECKBOXES ----- */
+/* ----- checked task ----- */
 .card input[type="checkbox"]{
     width: 0px;
     height: 0px;
@@ -184,17 +258,72 @@ form{
     border-top: none;
     opacity: 1;
 }
+/* ------------ */
+
+/* ----- mark task as important ----- */
+form input[type="checkbox"]{
+    width: 0;
+    height: 0;
+}
+form input[type="checkbox"]::before{
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 180px;
+    width: 60px;
+    height: 25px;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.075);
+    transition: .5s;
+}
+form input[type="checkbox"]:checked:before{
+    background-color: var(--confirmedColor);
+}
+form input[type="checkbox"]::after{
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 183px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.288);
+    transition: .5s;
+}
+form input[type="checkbox"]:checked:after{
+    left: 218px;
+}
 /* -------------------- */
 
 
 
 /* Paragraph */
 
-.navbarMsg{
+.sidebarMsg{
     color: gray;
 }
+.newItemField h1{
+    font-size: 3em;
+    color: var(--primaryColor);
+    text-align: center;
+}
+
 
 /* ----- in list ----- */
+.listHeader h1{
+    font-size: 2.4em;
+}
+.panelItem{
+    font-size: 1.2em;
+    color: gray;
+}
+.panelItemNumber{
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+}
+
 .todoTitle{
     font-size: 2.5em;
     color: var(--grayColor);
@@ -218,24 +347,25 @@ form{
 .mobileBtn{
     display: none;
 }
-#hamburguerBtn{
+.floatBtn{
     position: absolute;
+    border: none;
+    background: none;
+    z-index: 20;
+}
+#hamburguerBtn{
     top: 11px;
     right: 35px;
     font-size: 2.5em;
-    background: none;
-    border: none;
+    color: white;
 }
 #closeHamburguer{
     display: none;
-    position: absolute;
     top: 15px;
     right: 15px;
-    width: 30px;
-    height: 30px;
-    background: none;
-    border: none;
-    font-size: 2.7em;
+    width: 20px;
+    height: 20px;
+    font-size: 2.4em;
     cursor: pointer;
 }
 #closeHamburguer i{
@@ -244,20 +374,32 @@ form{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#closeNewItemField{
+    top: 0px;
+    right: 15px;
+    font-size: 2.5em;
+}
 
 
 
 /* Form Btn */
 form> button{
-    background-image: var(--primaryColor);
+    position: relative;
+    width: 65%;
+    height: 50px;
+    margin-top: 40px;
+    font-size: 1em;
+    background-color: var(--primaryColor);
     color: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     font-weight: bold;
-    transition: .4s;
+    box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.356);
+    transition: .5s;
 }
 form>button:hover{
-    color: rgb(214, 214, 214);
+    color: var(--primaryColor);
+    border: 2px solid var(--primaryColor);
+    background: none;
 }
 
 /* trash btn */
@@ -272,21 +414,49 @@ form>button:hover{
     font-size: 1.5em;
 }
 
-
+/* important checkbox broken in 4k */
 
 /* ------------- RESPONSIVE ----------- */
 /* 4K */
 @media screen and (min-width: 1800px) {
     .container{
-        max-width: 900px;
+        max-width: 1700px;
         padding: 35px!important;
     }
+    .sidebarHeader{
+        margin-top: 50px;
+    }
+    .sidebarHeader h1{
+        font-size: 5.4em;
+    }
+    .sidebarMsg{
+        font-size: 2.6em;
+    }
+    .sidebar-optionsDiv{
+        margin-top: 50px;
+    }
+    .sidebar label{
+        font-size: 3.1em;
+    }
+
+
+
+
+
     form{
         margin-bottom: 55px;
     }
-    .formStyle, form input{
+    .inputDescription{
+        font-size: 3em;
+    }
+    form input{
         height: 90px;
         font-size: 2.5em;
+    }
+    form button{
+        font-size: 2em;
+        height: 90px;
+        width: 700px;
     }
     .todoTitle{
         font-size: 5em;
@@ -302,6 +472,8 @@ form>button:hover{
     }
 
     
+
+
     /* ----- CHECKBOX ----- */
     .card input[type="checkbox"]{
         margin-right: 30px;
@@ -381,6 +553,13 @@ form>button:hover{
     .listContainer{
         width: 100%;
         padding: 15px;
+    }
+    .newItemField{
+        width: 100%;
+        padding-top: 30px;
+    }
+    form >button{
+        width: 120%;
     }
     
 

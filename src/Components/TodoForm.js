@@ -13,21 +13,77 @@ function TodoForm(props){
     function addItem(event) {
         event.preventDefault();
         if(text) {
-            const inputValue = document.getElementById("inputValue");
             props.onAddItem(text);
             setText("");
-            inputValue.focus();
-        };
+
+            props.hideInputField();
+            alertAnimation("success");
+        }else{
+            alertAnimation("danger");
+        }
+
+    };
+
+    function alertAnimation(alert){
+
+        let alertSuccess = document.getElementsByClassName("alert-success")[0];
+        let alertDanger = document.getElementsByClassName("alert-danger")[0];
+
+        switch(alert){
+            default:case "success":
+                alertSuccess.style.animation="showAlert 4s";
+
+                setTimeout(()=>{
+
+                    alertSuccess.style.animation="none";
+                }, 4100);
+
+                break;
+            
+            case "danger":
+                alertDanger.style.animation="showAlert 4s";
+
+                setTimeout(()=>{
+
+                    alertDanger.style.animation="none";
+                }, 4100);
+
+                break;
+        }
+
+
     }
 
-    return(
-        <form className=" d-flex flex-row justify-content-center mx-auto">
-            <input className="formStyle w-75 px-2"
-            id="inputValue" 
-            type="text" onChange={handleChange} value={text} placeholder="new task"></input>
 
-            <button className="formStyle w-25" onClick={addItem}>Add</button>
-        </form>
+
+    return(
+        <div className="newItemField fullScreenHeight">
+
+            <button className="mobileBtn floatBtn" id="closeNewItemField" onClick={props.hideInputField}><i className="bi bi-x"></i></button>
+
+
+            <h1>New task</h1>
+            <form className=" d-flex flex-column justify-content-start">
+                
+                {/* name */}
+                <h3 className="inputDescription px-1">Name <i className="bi bi-pencil-fill"></i></h3>
+                <input className="px-2"
+                id="inputValue"
+                type="text" onChange={handleChange} value={text} placeholder="name"></input>
+
+                {/* important */}
+                <section className="position-relative d-flex flex-row mt-4">
+                    <h3 className="inputDescription">Important <i className="bi bi-star-fill"></i> :</h3>
+                    <label>
+                        <input type="checkbox"></input>
+                    </label>
+                </section>
+
+
+                {/* add */}
+                <button className="" onClick={addItem}>Add</button>
+            </form>
+        </div>
     )
 }
 
