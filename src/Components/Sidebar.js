@@ -3,6 +3,8 @@ import SidebarOptions from "./SidebarOptions";
 
 function Sidebar(props){
 
+
+
     return (
             <section className="sidebar fullScreenHeight">
                 <button className="mobileBtn floatBtn" id="closeHamburguer" onClick={props.toggleSidebar}><i className="bi bi-x"></i></button>

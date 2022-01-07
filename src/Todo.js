@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Components/Sidebar"
-import List from "./Components/List";
+import ListsContainer from "./Components/ListsContainer";
 import TodoForm from "./Components/TodoForm";
 import Item from "./Components/Item"
 import "./Todo.css";
@@ -12,29 +12,29 @@ function Todo(){
     // ---------- TASK FUNCTIONS ---------- //
     const [items, setItems] = useState([]);
 
-    // When opening the app, if there is any task saved on the localStorage, add it to the list.
+    // When opening the app, if there is any task saved on the localStorage, add it to the lists.
     useEffect(()=>{
         let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
         if(savedItems){
             setItems(savedItems);
         }
+
     },[]);
+
 
     // Every time the array with the items update...
     useEffect(()=>{
         // Save it to the localStorage
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
 
-
         updateTaskPanelValues();
-
     }, [items]);
 
 
     // Adding new task
-    function onAddItem(text) {
+    function onAddItem(text, important) {
 
-        let it = new Item(text);
+        let it = new Item(text, important);
 
         setItems([it, ...items]);
 
@@ -66,6 +66,11 @@ function Todo(){
             let doneItems = items.filter(it=>it.done);
             let completedTasksNumber = doneItems.length;
             document.getElementsByClassName("panelItemNumber")[1].innerHTML=completedTasksNumber;
+
+            // important number
+            let importantItems = items.filter(it=>it.important);
+            let importantTasksNumber = importantItems.length;
+            document.getElementsByClassName("panelItemNumber")[2].innerHTML=importantTasksNumber;
         }
 
 
@@ -90,18 +95,43 @@ function Todo(){
 
     }
 
+    // show and animate the top-navbar present in mobile screens 
+    useEffect(()=>{
+        function mobileNavAnimation(e) {
+            console.log(e[0].isIntersecting)
+            let mobileTopNavbar = document.getElementsByClassName("top-nav")[0];
+            if(!e[0].isIntersecting){
+                
+                mobileTopNavbar.classList.add("top-nav-scrolled");
+
+            }else{
+                mobileTopNavbar.classList.remove("top-nav-scrolled");
+            }
+    
+        }
+    
+        const ob = new IntersectionObserver(mobileNavAnimation)
+    
+        let listHeaderH1 = document.getElementsByClassName("listHeaderH1")[0];
+
+        ob.observe(listHeaderH1);
+    }, []);
+
 
     return (
-        <div className="container px-0 pt-1">
+        <div className="container px-0 pt-0">
 
             {/* -----Mobile elements----- */}
             <div className="overlay"></div>
-            <button className="mobileBtn floatBtn" id="hamburguerBtn" onClick={toggleSidebar}><i className="bi bi-list"></i></button>
+
+            <nav className="mobileBtn top-nav floatBtn w-100">
+                <button className="mobileBtn floatBtn" id="hamburguerBtn" onClick={toggleSidebar}><i className="bi bi-list"></i></button>
+            </nav>
             {/* ------------------------ */}
 
             {/* --------alerts---------- */}
             <div className="alert alert-success" role="alert">
-            <i className="bi bi-check-circle-fill"></i>New task added successfuly
+            <i className="bi bi-check-circle-fill"></i> New task added successfuly
             </div>
 
             <div className="alert alert-danger" role="alert">
@@ -112,7 +142,7 @@ function Todo(){
             <Sidebar toggleSidebar={toggleSidebar
             } hideInputField={hideInputField}></Sidebar>
 
-            <List updateTaskDone={updateTaskDone} onItemDeleted={onItemDeleted} items={items}></List>
+            <ListsContainer updateTaskDone={updateTaskDone} onItemDeleted={onItemDeleted} items={items} setItems={setItems}></ListsContainer>
 
             <TodoForm onAddItem={onAddItem} hideInputField={hideInputField}></TodoForm>
 

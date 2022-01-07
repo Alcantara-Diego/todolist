@@ -14,6 +14,17 @@ function SidebarOptions(props){
     }
 
     function showList(){
+        document.getElementsByClassName("importantList")[0].style.display="none";
+        document.getElementsByClassName("mainList")[0].style.display="flex";
+
+        props.hideInputField();
+        props.toggleSidebar();
+    }
+
+    function showImportantList(){
+        document.getElementsByClassName("importantList")[0].style.display="flex";
+        document.getElementsByClassName("mainList")[0].style.display="none";
+
         props.hideInputField();
         props.toggleSidebar()
     }
@@ -37,7 +48,7 @@ function SidebarOptions(props){
                 </label>
 
                 <input type="radio" name="sidebarOptions" id="importantOption"></input>
-                <label htmlFor="importantOption">
+                <label htmlFor="importantOption" onClick={showImportantList}>
                     <i className="bi bi-star"></i> Important
                 </label>
 

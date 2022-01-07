@@ -12,8 +12,12 @@ function TodoForm(props){
 
     function addItem(event) {
         event.preventDefault();
+        
         if(text) {
-            props.onAddItem(text);
+            let importantCheckbox = document.getElementById("importantCheckbox").checked;
+            
+
+            props.onAddItem(text, importantCheckbox);
             setText("");
 
             props.hideInputField();
@@ -75,7 +79,7 @@ function TodoForm(props){
                 <section className="position-relative d-flex flex-row mt-4">
                     <h3 className="inputDescription">Important <i className="bi bi-star-fill"></i> :</h3>
                     <label>
-                        <input type="checkbox"></input>
+                        <input type="checkbox" id="importantCheckbox"></input>
                     </label>
                 </section>
 

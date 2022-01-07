@@ -1,5 +1,4 @@
 import React from "react";
-
 import Card from "./Card";
 
 
@@ -76,28 +75,32 @@ function ListItem(props){
     // Change the task visual based on if it's done or not.
     function taskDoneToggle(done, checkbox, card){
         if(done){
-            card.className="card taskDone";
+            card.classList.add("taskDone");
             checkbox.checked =true;
         }else {
             checkbox.checked=false;
-            card.className="card";
+            card.classList.remove("taskDone");
         }
+
+        props.refreshLists();
+       
     }
+
 
 
 
     if(props.item.done){
 
-        // Return the task as checked
+        // Return an checked task
         return (
-            <Card taskClick={getCardElement} className="card taskDone" item={props.item}>
+            <Card taskClick={getCardElement} className={props.item.important? "card importantTask taskDone" : "card taskDone"} item={props.item}>
                 <div id="taskContent" data-done={props.item.done} className="d-flex flex-row align-items-end w-75">
                     
                     <label>
                         <input type="checkbox" defaultChecked></input>
                     </label>
 
-                    <p className="taskTitle text-capitalize fs-3 mb-0">{props.item.text}</p>
+                    <p className="taskTitle text-capitalize fs-3 mb-0">{props.item.important? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
 
                 </div>
 
@@ -109,16 +112,16 @@ function ListItem(props){
         )
     }else{
 
-        // Return the task as not checked
+        // Return a normal task
         return (
-            <Card taskClick={getCardElement} className="card"  item={props.item}>
+            <Card taskClick={getCardElement} className={props.item.important? "card importantTask": "card"}  item={props.item}>
                 <div id="taskContent" data-done={props.item.done} className="d-flex flex-row align-items-end w-75">
                     
                     <label>
                         <input type="checkbox"></input>
                     </label>
 
-                    <p className="taskTitle text-capitalize mb-0">{props.item.text}</p>
+                    <p className="taskTitle text-capitalize mb-0">{props.item.important? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
 
                 </div>
 
