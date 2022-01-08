@@ -61,7 +61,7 @@ function TodoForm(props){
 
 
     return(
-        <div className="newItemField fullScreenHeight">
+        <div className="newItemField secondaryDiv">
 
             <button className="mobileBtn floatBtn" id="closeNewItemField" onClick={props.hideInputField}><i className="bi bi-x"></i></button>
 
@@ -79,7 +79,7 @@ function TodoForm(props){
                 <section className="position-relative d-flex flex-row mt-4">
                     <h3 className="inputDescription">Important <i className="bi bi-star-fill"></i> :</h3>
                     <label>
-                        <input type="checkbox" id="importantCheckbox"></input>
+                        <input type="checkbox" className="customCheckbox" id="importantCheckbox"></input>
                     </label>
                 </section>
 

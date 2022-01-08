@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Components/Sidebar"
 import ListsContainer from "./Components/ListsContainer";
 import TodoForm from "./Components/TodoForm";
+import Settings from "./Components/Settings";
 import Item from "./Components/Item"
 import "./Todo.css";
 
@@ -89,7 +90,7 @@ function Todo(){
 
      function hideInputField(){
         let inputField = document.getElementsByClassName("newItemField")[0];
-        inputField.classList.remove("showNewItemField");
+        inputField.classList.remove("showSecondaryDiv");
 
         document.getElementById("todayOption").checked=true;
 
@@ -98,7 +99,6 @@ function Todo(){
     // show and animate the top-navbar present in mobile screens 
     useEffect(()=>{
         function mobileNavAnimation(e) {
-            console.log(e[0].isIntersecting)
             let mobileTopNavbar = document.getElementsByClassName("top-nav")[0];
             if(!e[0].isIntersecting){
                 
@@ -116,6 +116,53 @@ function Todo(){
 
         ob.observe(listHeaderH1);
     }, []);
+
+    // ---------- STYLE FUNCTIONS ---------- //
+    useEffect(()=>{
+        // Check if darkMode was active in the last time the app was open 
+        let darkMode = localStorage.getItem("darkMode");
+
+        if(darkMode === "true"){
+            darkModeActive();
+        }
+
+    }, []);
+
+    function cssRootInfo(requested){
+
+        // Arrays keeps the variable names, and the selected colors to the colorTheme transition.
+        switch(requested){
+            case "rootItems":
+                return (["--primaryLinearGradient", "--primaryColor", "--background1",
+                "--background2", "--color1", "--color2", "--borderCard", "--importantTaskBackground",
+                "--importantTaskCompletedBackground"]);
+            
+            case "darkThemeColors":
+                return (["linear-gradient(to bottom right, #1e1e1e, #3d3d3d)", "#673ab7", "#1e1e1e","#2e2e2e","#ffffff",
+                "#cccccc","#333333","#ff4242be", "#39c660de"]);
+            
+            case "lightThemeColors":
+                return (["linear-gradient(to bottom, #ff5252, #bd4040)", "#ff5252", "#ffffff", "#ffffff", "black", "black", "##f7f5f5", "#ffd4e5", "#d5ffe5"]);
+
+            default:
+                console.log("cssRootInfo is not returning anything");
+        }
+
+    }
+
+    function darkModeActive(){
+
+        const rootItems = cssRootInfo("rootItems");
+
+        const darkThemeColors = cssRootInfo("darkThemeColors");
+
+        for(let i=0; i <= rootItems.length; i++){
+            document.documentElement.style.setProperty(rootItems[i], darkThemeColors[i]);
+        }
+
+        document.getElementById("darkModeCheckbox").checked=true;
+    }
+    // ---------- CLOSING STYLE FUNCTIONS ---------- //
 
 
     return (
@@ -145,6 +192,7 @@ function Todo(){
             <ListsContainer updateTaskDone={updateTaskDone} onItemDeleted={onItemDeleted} items={items} setItems={setItems}></ListsContainer>
 
             <TodoForm onAddItem={onAddItem} hideInputField={hideInputField}></TodoForm>
+            <Settings cssRootInfo={cssRootInfo}></Settings>
 
         </div>
     )
