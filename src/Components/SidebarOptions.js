@@ -7,6 +7,11 @@ function SidebarOptions(props){
         settings.classList.remove("showSecondaryDiv");
     }
 
+    function hideAbout(){
+        let about = document.getElementsByClassName("about")[0];
+        about.classList.remove("showSecondaryDiv");
+    }
+
     function showSection(section){
 
         props.toggleSidebar();
@@ -17,7 +22,8 @@ function SidebarOptions(props){
                 document.getElementsByClassName("importantList")[0].style.display="none";
                 document.getElementsByClassName("mainList")[0].style.display="flex";
         
-                hideSettings()
+                hideSettings();
+                hideAbout();
                 props.hideInputField();
                 break;
             
@@ -26,13 +32,23 @@ function SidebarOptions(props){
                 document.getElementsByClassName("mainList")[0].style.display="none";
 
                 hideSettings();
+                hideAbout();
                 props.hideInputField();
                 break;
+
+                case "about":
+                    let about = document.getElementsByClassName("about")[0];
+                    about.classList.add("showSecondaryDiv");
+            
+                    hideSettings();
+                    props.hideInputField();
+                    break;
 
             case "settings":
                 let settings = document.getElementsByClassName("settings")[0];
                 settings.classList.add("showSecondaryDiv");
         
+                hideAbout();
                 props.hideInputField();
                 break;
 
@@ -44,6 +60,7 @@ function SidebarOptions(props){
                 setTimeout(()=>{document.getElementById("inputValue").focus();}, 800);
 
                 hideSettings();
+                hideAbout();
                 break;
 
             default:
@@ -51,6 +68,7 @@ function SidebarOptions(props){
                 document.getElementsByClassName("mainList")[0].style.display="flex";
         
                 hideSettings();
+                hideAbout();
                 props.hideInputField();
 
         }
@@ -63,11 +81,11 @@ function SidebarOptions(props){
 
         <div className="sidebar-optionsDiv px-2">
 
+
                 <input type="radio" name="sidebarOptions" id="newTasksOption"></input>
                 <label htmlFor="newTasksOption" onClick={()=>{showSection("newItemField")}}><i className="bi bi-plus"></i> Create new task
                 </label>
                 <hr></hr>
-
 
                 <input type="radio" name="sidebarOptions" id="todayOption" defaultChecked></input>
                 <label htmlFor="todayOption" onClick={()=>{showSection("list")}}>
@@ -79,14 +97,11 @@ function SidebarOptions(props){
                     <i className="bi bi-star"></i> Important
                 </label>
 
-                <input type="radio" name="sidebarOptions" id="archivedOption"></input>
-                <label htmlFor="archivedOption">
-                    <i className="bi bi-archive"></i> Archived
-                </label>
+
 
                 <hr></hr>
                 <input type="radio" name="sidebarOptions" id="aboutOption"></input>
-                <label htmlFor="aboutOption">
+                <label htmlFor="aboutOption" onClick={()=>{showSection("about")}}>
                     <i className="bi bi-info-circle"></i> About
                 </label>
                 <input type="radio" name="sidebarOptions" id="settingsOption"></input>

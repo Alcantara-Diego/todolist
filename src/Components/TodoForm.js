@@ -21,6 +21,9 @@ function TodoForm(props){
             setText("");
 
             props.hideInputField();
+            document.getElementById("importantCheckbox").checked=false;
+
+            
             alertAnimation("success");
         }else{
             alertAnimation("danger");

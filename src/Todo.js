@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Components/Sidebar"
 import ListsContainer from "./Components/ListsContainer";
 import TodoForm from "./Components/TodoForm";
+import About from "./Components/About";
 import Settings from "./Components/Settings";
 import Item from "./Components/Item"
 import "./Todo.css";
@@ -16,8 +17,16 @@ function Todo(){
     // When opening the app, if there is any task saved on the localStorage, add it to the lists.
     useEffect(()=>{
         let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
+
         if(savedItems){
-            setItems(savedItems);
+
+            setItems(savedItems)
+
+
+            if(savedItems.length === 0){
+
+                changeEmptyListMsgDisplay("block");
+            }
         }
 
     },[]);
@@ -39,6 +48,8 @@ function Todo(){
 
         setItems([it, ...items]);
 
+        changeEmptyListMsgDisplay("none");
+
     }
     // Deleting a task
     function onItemDeleted(item) {
@@ -46,8 +57,13 @@ function Todo(){
         let filteredItems = items.filter(it => it.id !== item.id)
 
         setItems(filteredItems);
+
+        if(filteredItems.length === 0){
+            changeEmptyListMsgDisplay("block");
+        }
     }
 
+    // Update the done value of a task, and save it to the local storage
     function updateTaskDone(item, value){
         item.done=value;
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
@@ -55,6 +71,7 @@ function Todo(){
         updateTaskPanelValues();
     }
 
+    // Update the numbers in the task panel
     function updateTaskPanelValues(){
         let isPanelVisible = document.getElementsByClassName("listPanel")[0];
 
@@ -76,9 +93,18 @@ function Todo(){
 
 
     }
+
+    // Show the message when the list is empty, and hide it if there is at least one task created
+    function changeEmptyListMsgDisplay(selected){
+        document.getElementsByClassName("emptyListMsg")[0].style.display=selected;
+    }
      // ------- CLOSING TASK FUNCTIONS -------- //
 
 
+
+
+
+    // ---------- FUNCTIONS CONTROLING THE ELEMENTS APPEARENCE ---------- //
      function toggleSidebar(){
         const sidebar = document.getElementsByClassName("sidebar")[0];
         sidebar.classList.toggle("showSidebar");
@@ -116,6 +142,11 @@ function Todo(){
 
         ob.observe(listHeaderH1);
     }, []);
+    // ---------- CLOSING FUNCTIONS CONTROLING THE ELEMENTS APPEARENCE ---------- //
+
+
+
+
 
     // ---------- STYLE FUNCTIONS ---------- //
     useEffect(()=>{
@@ -135,14 +166,14 @@ function Todo(){
             case "rootItems":
                 return (["--primaryLinearGradient", "--primaryColor", "--background1",
                 "--background2", "--color1", "--color2", "--borderCard", "--importantTaskBackground",
-                "--importantTaskCompletedBackground"]);
+                "--importantTaskCompletedBackground", "--sidebarSelectedBtn"]);
             
             case "darkThemeColors":
-                return (["linear-gradient(to bottom right, #1e1e1e, #3d3d3d)", "#673ab7", "#1e1e1e","#2e2e2e","#ffffff",
-                "#cccccc","#333333","#ff4242be", "#39c660de"]);
+                return (["linear-gradient(to top, #1e1e1e, #1e1e1e)", "#673ab7", "#1e1e1e","#2e2e2e","#ffffff",
+                "#cccccc","#333333","#ff4242be", "#39c660de", "#673ab7"]);
             
             case "lightThemeColors":
-                return (["linear-gradient(to bottom, #ff5252, #bd4040)", "#ff5252", "#ffffff", "#ffffff", "black", "black", "##f7f5f5", "#ffd4e5", "#d5ffe5"]);
+                return (["linear-gradient(to bottom, #ff5252, #bd4040)", "#ff5252", "#ffffff", "#ffffff", "black", "black", "##f7f5f5", "#ffd4e5", "#d5ffe5", "#00000015"]);
 
             default:
                 console.log("cssRootInfo is not returning anything");
@@ -160,9 +191,12 @@ function Todo(){
             document.documentElement.style.setProperty(rootItems[i], darkThemeColors[i]);
         }
 
+        document.getElementsByClassName("listHeaderH1")[0].style.color="#adadad";
         document.getElementById("darkModeCheckbox").checked=true;
     }
     // ---------- CLOSING STYLE FUNCTIONS ---------- //
+
+
 
 
     return (
@@ -192,6 +226,7 @@ function Todo(){
             <ListsContainer updateTaskDone={updateTaskDone} onItemDeleted={onItemDeleted} items={items} setItems={setItems}></ListsContainer>
 
             <TodoForm onAddItem={onAddItem} hideInputField={hideInputField}></TodoForm>
+            <About></About>
             <Settings cssRootInfo={cssRootInfo}></Settings>
 
         </div>

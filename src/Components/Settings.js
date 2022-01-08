@@ -17,12 +17,16 @@ function Settings(props){
         const lightThemeColors = props.cssRootInfo("lightThemeColors");
 
         if(isDarkModeEnabled){
+
             localStorage.setItem("darkMode", true);
 
 
             for(let i=0; i <= rootItems.length; i++){
                 document.documentElement.style.setProperty(rootItems[i], darkThemeColors[i]);
             }
+
+            document.getElementsByClassName("listHeaderH1")[0].style.color="white";
+
 
         } else {
             localStorage.setItem("darkMode", false);
@@ -41,7 +45,7 @@ function Settings(props){
 
             <h1>Settings</h1>
             <section className="position-relative d-flex flex-row mt-4">
-                    <h3 className="inputDescription">DarkMode <i className="bi bi-moon-stars-fill"></i></h3>
+                    <h3 className="inputDescription mb-0">DarkMode <i className="bi bi-moon-stars-fill"></i></h3>
                     <label>
                         <input type="checkbox" id="darkModeCheckbox" className="customCheckbox" onClick={darkMode}></input>
                     </label>

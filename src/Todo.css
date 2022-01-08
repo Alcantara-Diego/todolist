@@ -15,6 +15,8 @@
 
     --importantTaskBackground:#ffd4e5;
     --importantTaskCompletedBackground:#d5ffe5;
+
+    --sidebarSelectedBtn: #00000015;
    
 }
 
@@ -103,9 +105,10 @@ form input[type="text"]{
 
     font-size: 1.2em;
     padding: 5px;
+    color: var(--color1);
     border-radius: 20px;
     border: none;
-    background-color: rgba(0, 0, 0, 0.075);
+    background-color: rgba(128, 128, 128, 0.418);
 }
 
 /* ---------------------------------------------- */
@@ -126,6 +129,7 @@ form input[type="text"]{
 
 .sidebarHeader{
     margin-top: 25px;
+    margin-bottom: 10px;
     height: 10vh;
 }
 
@@ -135,7 +139,7 @@ form input[type="text"]{
 .sidebar-optionsDiv{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 10%;
 }
 .sidebar input[type="radio"]{
     display: none;
@@ -143,10 +147,10 @@ form input[type="text"]{
 
 .sidebar input[type="radio"]:checked + label{
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.082);
+    background-color: var(--sidebarSelectedBtn);
 }
 .sidebar label:hover{
-    background-color: rgba(0, 0, 0, 0.082);
+    background-color: var(--sidebarSelectedBtn);
 }
 .sidebar label{
     text-align: center;
@@ -200,6 +204,20 @@ form input[type="text"]{
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.emptyListMsg{
+    display: none;
+}
+.emptyListMsg img{
+    display: block;
+    margin: 50px auto;
+    width: 250px;
+}
+.emptyListMsg p{
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--grayColor);
+}
 
 .card{
     position: relative;
@@ -241,12 +259,14 @@ form input[type="text"]{
 .customCheckbox::before{
     content: "";
     position: absolute;
-    top: 7px;
+    /* top: 7px; */
+    top: 50%;
+    transform: translatey(-50%);
     left: 180px;
     width: 60px;
     height: 25px;
     border-radius: 25px;
-    background-color: rgba(0, 0, 0, 0.075);
+    background-color: var(--grayColor);
     transition: .5s;
 }
 .customCheckbox:checked:before{
@@ -255,8 +275,10 @@ form input[type="text"]{
 .customCheckbox::after{
     content: "";
     position: absolute;
-    top: 10px;
-    left: 183px;
+    /* top: 10px; */
+    top: 50%;
+    transform: translatey(-50%);
+    left: 184px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -336,6 +358,14 @@ form input[type="text"]{
 .secondaryDiv p, .secondaryDiv h3{
     color: var(--color1);
 }
+
+.about h4{
+    color: var(--grayColor);
+}
+.about a{
+    font-size: 1.2em;
+}
+
 
 
 /* ----- in list ----- */
@@ -431,7 +461,7 @@ form input[type="text"]{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-#closeNewItemField, #closeSettingsBtn{
+#closeNewItemField, #closeAboutBtn, #closeSettingsBtn{
     top: 0px;
     right: 15px;
     font-size: 2.5em;
@@ -482,7 +512,11 @@ form>button:hover{
 @media screen and (min-width: 1800px) {
     .container{
         max-width: 1700px;
-        padding: 35px!important;
+    }
+
+    /* SIDEBAR --------------------------- */
+    .sidebar{
+        padding: 20px;
     }
     .sidebarHeader{
         margin-top: 50px;
@@ -497,45 +531,104 @@ form>button:hover{
         margin-top: 50px;
     }
     .sidebar label{
-        font-size: 3.1em;
+        font-size: 3em;
     }
+    /* ------------------------------------- */
 
-
-
-
-
+    /* NEW ITEM FIELD-------------------------------- */
     form{
         margin-bottom: 55px;
     }
     .inputDescription{
         font-size: 3em;
     }
-    form input{
+    form input[type="text"]{
         height: 90px;
-        font-size: 2.5em;
+        font-size: 3em;
     }
     form button{
         font-size: 2em;
         height: 90px;
         width: 700px;
     }
+    /* ------------------------------------- */
+
+    /* LIST CONTAINER -------------------------------- */
     .todoTitle{
         font-size: 5em;
+    }
+
+    .listHeader h1{
+        font-size: 6.5em;
+        margin-top: 40px;
+    }
+    .listHeader{
+        height: 24vh;
+    }
+    
+
+    /* list Panel */
+    .listPanel{
+        height: fit-content;
+    }
+    .panelItem{
+        font-size: 2.1em;
+        font-weight: bold;
+        color: gray;
+    }
+    .panelItemNumber{
+        color: var(--color1);
+        font-weight: bold;
+        font-size: 2.5em;
+    }
+
+
+    .emptyListMsg img{
+        margin: 80px auto;
+        width: 700px;
+    }
+    .emptyListMsg p{
+        margin-top: 70px;
+        font-size: 3em;
     }
 
     .card{
         margin-bottom: 23px;
         height: 170px;
-        border-left: 8px solid #ff5252;
+        border-left: 10px solid var(--primaryColor);
     }
     .card:hover{
         height: 190px;
+        border-left: 10px solid var(--primaryColor);
     }
 
-    
+    .taskTitle{
+        font-size: 4em;
+    }
+    .trashBtn i{
+        font-size: 4em;
+    }
+
+     /* ----- CHECKBOX ----- */
+    .customCheckbox::before{
+        top: 50%;
+        transform: translatey(-50%);
+        left: 380px;
+        width: 150px;
+        height: 55px;
+    }
+    .customCheckbox::after{
+        top: 50%;
+        transform: translatey(-51%);
+        left: 386px;
+        width: 40px;
+        height: 40px;
+    }
+    .customCheckbox:checked::after{
+        left: 480px;
+    }
 
 
-    /* ----- CHECKBOX ----- */
     .card input[type="checkbox"]{
         margin-right: 30px;
     }
@@ -563,25 +656,35 @@ form>button:hover{
         width: 26px;
         transform: rotate(45deg) translate(-10px, -40px) ;
     }
-    /* ------------------------ */
+    /* ------------------------------------- */
 
 
-    .taskTitle{
-        font-size: 4em;
+
+    .secondaryDiv{
+        padding: 50px;
     }
-    .trashBtn i{
-        font-size: 4em;
+    .secondaryDiv h1{
+        margin-bottom: 20px;
+        font-size: 5em;
+    }
+
+    .secondaryDiv h3, .secondaryDiv h4, .secondaryDiv a{
+        font-size: 3em;
     }
     
 }
 
 
+
 /* Mobile device */
-/* mobile L */
-@media screen and (max-width: 450px) {
+/* tablet */
+@media screen and (max-width: 1000px){
     .container{
         border-radius: 0%;
     }
+}
+/*mobile L */
+@media screen and (max-width: 510px) {
     .mobileBtn{
         display: flex!important;
     }

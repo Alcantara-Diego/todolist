@@ -100,7 +100,7 @@ function ListItem(props){
                         <input type="checkbox" defaultChecked></input>
                     </label>
 
-                    <p className="taskTitle text-capitalize fs-3 mb-0">{props.item.important? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
+                    <p className="taskTitle text-capitalize mb-0">{props.item.important? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
 
                 </div>
 
