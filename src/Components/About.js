@@ -17,7 +17,7 @@ function About(){
 
             <h1>About</h1>
             <section className="position-relative d-flex flex-column mt-4">
-                    <h4 className="mb-0 mt-2">App created by Diego ALcântara:</h4>
+                    <h4 className="mb-0 mt-2">App created by Diego Alcântara:</h4>
                     <a href="https://github.com/Alcantara-Diego" target="_blank" rel="noreferrer">Go to my github page <i className="bi bi-github"></i></a>
             </section>
         </div>

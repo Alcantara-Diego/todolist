@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import Sidebar from "./Components/Sidebar"
-import ListsContainer from "./Components/ListsContainer";
-import TodoForm from "./Components/TodoForm";
-import About from "./Components/About";
-import Settings from "./Components/Settings";
+import ListsContainer from "./Components/ListsContainer"
+import TodoForm from "./Components/TodoForm"
+import About from "./Components/About"
+import Settings from "./Components/Settings"
 import Item from "./Components/Item"
-import "./Todo.css";
+import "./Todo.css"
 
-const SAVED_ITEMS="savedItems";
 
-function Todo(){
+const SAVED_ITEMS="savedItems"
+
+function App(){
 
     // ---------- TASK FUNCTIONS ---------- //
     const [items, setItems] = useState([]);
@@ -236,4 +237,4 @@ function Todo(){
 
 
 
-export default Todo;
+export default App;
