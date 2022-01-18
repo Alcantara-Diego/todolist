@@ -81,7 +81,7 @@ function TodoForm(props){
                 {/* important */}
                 <section className="position-relative d-flex flex-row mt-4">
                     <h3 className="inputDescription">Important <i className="bi bi-star-fill"></i> :</h3>
-                    <label>
+                    <label className="position-relative mx-2">
                         <input type="checkbox" className="customCheckbox" id="importantCheckbox"></input>
                     </label>
                 </section>

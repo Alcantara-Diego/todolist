@@ -212,12 +212,7 @@ form input[type="text"]{
     margin: 50px auto;
     width: 250px;
 }
-.emptyListMsg p{
-    text-align: center;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: var(--grayColor);
-}
+
 
 .card{
     position: relative;
@@ -259,10 +254,9 @@ form input[type="text"]{
 .customCheckbox::before{
     content: "";
     position: absolute;
-    /* top: 7px; */
     top: 50%;
     transform: translatey(-50%);
-    left: 180px;
+    left: 0px;
     width: 60px;
     height: 25px;
     border-radius: 25px;
@@ -275,10 +269,9 @@ form input[type="text"]{
 .customCheckbox::after{
     content: "";
     position: absolute;
-    /* top: 10px; */
     top: 50%;
     transform: translatey(-50%);
-    left: 184px;
+    left: 4px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -287,7 +280,7 @@ form input[type="text"]{
     transition: .5s;
 }
 .customCheckbox:checked::after{
-    left: 218px;
+    left: 37px;
 }
 /* ------------ */
 
@@ -355,7 +348,7 @@ form input[type="text"]{
     color: var(--primaryColor);
     text-align: center;
 }
-.secondaryDiv p, .secondaryDiv h3{
+.secondaryDiv h3{
     color: var(--color1);
 }
 
@@ -364,6 +357,10 @@ form input[type="text"]{
 }
 .about a{
     font-size: 1.2em;
+}
+
+.quick-description{
+    color: var(--grayColor);
 }
 
 
@@ -381,6 +378,13 @@ form input[type="text"]{
     color: var(--color1);
     font-weight: bold;
     font-size: 2em;
+}
+
+.emptyListMsg p{
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--grayColor);
 }
 
 .todoTitle{
@@ -505,7 +509,6 @@ form>button:hover{
     font-size: 1.5em;
 }
 
-/* important checkbox broken in 4k */
 
 /* ------------- RESPONSIVE ----------- */
 /* 4K */
@@ -613,19 +616,19 @@ form>button:hover{
     .customCheckbox::before{
         top: 50%;
         transform: translatey(-50%);
-        left: 380px;
+        left: 25px;
         width: 150px;
         height: 55px;
     }
     .customCheckbox::after{
         top: 50%;
         transform: translatey(-51%);
-        left: 386px;
+        left: 34px;
         width: 40px;
         height: 40px;
     }
     .customCheckbox:checked::after{
-        left: 480px;
+        left: 123px;
     }
 
 
@@ -670,6 +673,10 @@ form>button:hover{
 
     .secondaryDiv h3, .secondaryDiv h4, .secondaryDiv a{
         font-size: 3em;
+    }
+
+    .quick-description{
+        font-size: 2.5em;
     }
     
 }

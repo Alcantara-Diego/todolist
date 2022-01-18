@@ -152,10 +152,21 @@ function App(){
     // ---------- STYLE FUNCTIONS ---------- //
     useEffect(()=>{
         // Check if darkMode was active in the last time the app was open 
-        let darkMode = localStorage.getItem("darkMode");
+        const darkMode = localStorage.getItem("darkMode");
 
         if(darkMode === "true"){
             darkModeActive();
+            document.getElementById("darkModeCheckbox").checked=true;
+
+            localStorage.setItem("autoTheme", false);
+
+        }else { //If darkMode is not active, check if the autoTheme is
+            const autoTheme = localStorage.getItem("autoTheme");
+
+            if(autoTheme === "true"){
+                checkAutoTheme();
+                document.getElementById("autoThemeCheckbox").checked = true
+            }
         }
 
     }, []);
@@ -171,7 +182,7 @@ function App(){
             
             case "darkThemeColors":
                 return (["linear-gradient(to top, #1e1e1e, #1e1e1e)", "#673ab7", "#1e1e1e","#2e2e2e","#ffffff",
-                "#cccccc","#333333","#ff4242be", "#39c660de", "#673ab7"]);
+                "#cccccc","#333333","#f14141be", "#30a751de", "#673ab7"]);
             
             case "lightThemeColors":
                 return (["linear-gradient(to bottom, #ff5252, #bd4040)", "#ff5252", "#ffffff", "#ffffff", "black", "black", "##f7f5f5", "#ffd4e5", "#d5ffe5", "#00000015"]);
@@ -180,6 +191,17 @@ function App(){
                 console.log("cssRootInfo is not returning anything");
         }
 
+    }
+
+    //autoTheme makes the darkMode be enabled during a certain period of time
+    function checkAutoTheme(){
+        const date = new Date();
+        const hour = date.getHours();
+
+        
+        if(hour <= 6 || hour >= 22){
+            darkModeActive();
+        }
     }
 
     function darkModeActive(){
@@ -193,7 +215,6 @@ function App(){
         }
 
         document.getElementsByClassName("listHeaderH1")[0].style.color="#adadad";
-        document.getElementById("darkModeCheckbox").checked=true;
     }
     // ---------- CLOSING STYLE FUNCTIONS ---------- //
 
@@ -228,7 +249,7 @@ function App(){
 
             <TodoForm onAddItem={onAddItem} hideInputField={hideInputField}></TodoForm>
             <About></About>
-            <Settings cssRootInfo={cssRootInfo}></Settings>
+            <Settings cssRootInfo={cssRootInfo} checkAutoTheme={checkAutoTheme}></Settings>
 
         </div>
     )
