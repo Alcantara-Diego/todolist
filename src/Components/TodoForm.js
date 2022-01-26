@@ -69,18 +69,18 @@ function TodoForm(props){
             <button className="mobileBtn floatBtn" id="closeNewItemField" onClick={props.hideInputField}><i className="bi bi-x"></i></button>
 
 
-            <h1>New task</h1>
+            <h1 className="newTaskFieldTitle sectionTitle">New task</h1>
             <form className=" d-flex flex-column justify-content-start">
                 
                 {/* name */}
-                <h3 className="inputDescription px-1">Name <i className="bi bi-pencil-fill"></i></h3>
+                <h3 className="nameInputDescription inputDescription px-1">Name <i className="bi bi-pencil-fill"></i></h3>
                 <input className="px-2"
                 id="inputValue"
-                type="text" onChange={handleChange} value={text} placeholder="name"></input>
+                type="text" onChange={handleChange} value={text}></input>
 
-                {/* important */}
+                {/* habit */}
                 <section className="position-relative d-flex flex-row mt-4">
-                    <h3 className="inputDescription">Important <i className="bi bi-star-fill"></i> :</h3>
+                    <h3 className="habitInputDescription inputDescription">Habit <i className="bi bi-star-fill"></i> :</h3>
                     <label className="position-relative mx-2">
                         <input type="checkbox" className="customCheckbox" id="importantCheckbox"></input>
                     </label>
@@ -88,7 +88,7 @@ function TodoForm(props){
 
 
                 {/* add */}
-                <button className="" onClick={addItem}>Add</button>
+                <button className="addNewTaskBtn" onClick={addItem}>Add</button>
             </form>
         </div>
     )

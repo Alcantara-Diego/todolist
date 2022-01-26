@@ -8,15 +8,15 @@ function ListHeader(){
 
             <div className="listPanel d-flex flex-row align-items-center justify-content-around">
                 <section className="panelItem">
-                    <div className="panelItemNumber">0</div> tasks
+                    <div className="panelItemNumber">0</div> <div id="panelItemTasks">tasks</div>
                 </section>
 
                 <section className="panelItem">
-                    <div className="panelItemNumber">0</div> done
+                    <div className="panelItemNumber">0</div> <div id="panelItemDone">done</div>
                 </section>
 
                 <section className="panelItem">
-                    <div className="panelItemNumber">0</div> important
+                    <div className="panelItemNumber">0</div> <div id="panelItemHabits">habits</div>
                 </section>
             </div>
         </header>

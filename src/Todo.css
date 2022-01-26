@@ -185,7 +185,7 @@ form input[type="text"]{
     border-bottom-right-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 2px 3px 1px;
 }
-.importantList{
+.habitsList{
     display: none;
 }
 .list{
@@ -442,8 +442,8 @@ form input[type="text"]{
     transform: translateY(-50%);
 }
 #hamburguerBtn{
-    top: 7px;
-    right: 35px;
+    top: 5px;
+    left: 10px;
     font-size: 2.5em;
     color: white;
     transition: .5s;
@@ -509,6 +509,14 @@ form>button:hover{
     font-size: 1.5em;
 }
 
+/* Settings buttons */
+.languageOption{
+    padding: 9px;
+    border-radius: 30px;
+    color: white;
+    background-color: var(--primaryColor);
+    transition: 0.3s;
+}
 
 /* ------------- RESPONSIVE ----------- */
 /* 4K */
@@ -752,6 +760,10 @@ form>button:hover{
 
     .sidebar{
         width: 70%;
+    }
+
+    .sectionTitle{
+        font-size: 2.2em!important;
     }
 
 }

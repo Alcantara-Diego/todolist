@@ -19,7 +19,7 @@ function SidebarOptions(props){
         switch(section){
 
             case "list":
-                document.getElementsByClassName("importantList")[0].style.display="none";
+                document.getElementsByClassName("habitsList")[0].style.display="none";
                 document.getElementsByClassName("mainList")[0].style.display="flex";
         
                 hideSettings();
@@ -27,8 +27,8 @@ function SidebarOptions(props){
                 props.hideInputField();
                 break;
             
-            case "importantList":
-                document.getElementsByClassName("importantList")[0].style.display="flex";
+            case "habitsList":
+                document.getElementsByClassName("habitsList")[0].style.display="flex";
                 document.getElementsByClassName("mainList")[0].style.display="none";
 
                 hideSettings();
@@ -92,9 +92,9 @@ function SidebarOptions(props){
                     <i className="bi bi-calendar2"></i> Today
                 </label>
 
-                <input type="radio" name="sidebarOptions" id="importantOption"></input>
-                <label htmlFor="importantOption" onClick={()=>{showSection("importantList")}}>
-                    <i className="bi bi-star"></i> Important
+                <input type="radio" name="sidebarOptions" id="habitsOption"></input>
+                <label htmlFor="habitsOption" onClick={()=>{showSection("habitsList")}}>
+                    <i className="bi bi-star"></i> Habits
                 </label>
 
 
@@ -104,6 +104,7 @@ function SidebarOptions(props){
                 <label htmlFor="aboutOption" onClick={()=>{showSection("about")}}>
                     <i className="bi bi-info-circle"></i> About
                 </label>
+                
                 <input type="radio" name="sidebarOptions" id="settingsOption"></input>
                 <label htmlFor="settingsOption" onClick={()=>{showSection("settings")}}>
                     <i className="bi bi-gear"></i> Settings

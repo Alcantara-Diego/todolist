@@ -11,7 +11,7 @@ function Sidebar(props){
 
 
                 <header className="sidebarHeader px-3">
-                    <h1>TodoList</h1>
+                    <h1 id="sideBarTitle">TodoList</h1>
                     <h6 className="sidebarMsg">What´s up today?</h6>
                 </header>
 

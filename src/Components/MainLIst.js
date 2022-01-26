@@ -12,7 +12,7 @@ function MainList(props){
 
         <aside className="emptyListMsg">
             <img src={logo} alt=""></img>
-            <p>You have no tasks yet :( <br></br> Create a new one to remember your goals! </p>
+            <p className="emptyListMsgPTag">You have no tasks yet :( <br></br> Create a new one to remember your goals! </p>
         </aside>
 
         <ul className="list flex-column align-items-start w-100  pt-1 px-3 mt-0">

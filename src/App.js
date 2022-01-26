@@ -5,12 +5,59 @@ import TodoForm from "./Components/TodoForm"
 import About from "./Components/About"
 import Settings from "./Components/Settings"
 import Item from "./Components/Item"
+import words from "./Components/Language"
 import "./Todo.css"
 
 
 const SAVED_ITEMS="savedItems"
 
 function App(){
+
+    // ---------- LANGUAGE ---------- //
+    useEffect(()=>{
+        let language = localStorage.getItem("TODOLIST_language");
+
+        switch (language) {
+            case "english":
+                loadLanguage("english");
+                break;
+        
+            default:
+                loadLanguage("portuguease");
+                break;
+        }
+
+    },[]);
+
+    function loadLanguage(language){
+        // "words" contains the texts in both languages
+        let wordsLength = words.length;
+
+        switch (language) {
+            case "english":
+
+                for (let i = 0; i < wordsLength; i++){
+
+                    let word = document.querySelector(words[i].id);
+                    word.innerHTML=words[i].english;
+                }
+
+                break;
+        
+            default:
+
+                for (let i = 0; i < wordsLength; i++){
+                    
+                    let word = document.querySelector(words[i].id);
+                    word.innerHTML=words[i].portuguease;
+                }
+                
+                break;
+        }
+    }
+
+    // ------- CLOSING LANGUAGE -------- //
+
 
     // ---------- TASK FUNCTIONS ---------- //
     const [items, setItems] = useState([]);
@@ -249,7 +296,7 @@ function App(){
 
             <TodoForm onAddItem={onAddItem} hideInputField={hideInputField}></TodoForm>
             <About></About>
-            <Settings cssRootInfo={cssRootInfo} checkAutoTheme={checkAutoTheme}></Settings>
+            <Settings cssRootInfo={cssRootInfo} checkAutoTheme={checkAutoTheme} loadLanguage={loadLanguage}></Settings>
 
         </div>
     )
