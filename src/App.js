@@ -13,6 +13,59 @@ const SAVED_ITEMS="savedItems"
 
 function App(){
 
+    // ---------- DATES ---------- //
+    function getDate(){
+        const d = new Date();
+        const date = {
+            day: d.getDate(),
+            month: d.getMonth() + 1,
+            year: d.getFullYear()
+        }
+        return date;
+    }
+
+    function compareDates(lastLogin, today){
+        console.log(lastLogin);
+        console.log(today);
+        
+        if(today.day === lastLogin.day && today.month === lastLogin.month && today.year === lastLogin.year) {
+            return true
+
+        } else return false
+    }
+
+    function isItTheFirstLoginToday(){
+        let todayDate = getDate();
+
+        const savedLastLogin = "TODOLIST_lastLogin";
+
+        let checkingUserLastLogin = JSON.parse(localStorage.getItem(savedLastLogin));
+        
+
+        if(checkingUserLastLogin) {
+
+            const datesAreTheSame = compareDates(checkingUserLastLogin, todayDate);
+
+            // Update the last login for todays date
+            localStorage.setItem(savedLastLogin, JSON.stringify(todayDate));
+
+            if(datesAreTheSame){
+
+                return false
+            }else{
+
+                return true
+            }
+            
+        } else{
+            
+            localStorage.setItem(savedLastLogin, JSON.stringify(todayDate));
+        }
+    }
+    // ---------- CLOSING DATES ---------- //
+
+
+
     // ---------- LANGUAGE ---------- //
     useEffect(()=>{
         let language = localStorage.getItem("TODOLIST_language");
@@ -68,16 +121,38 @@ function App(){
 
         if(savedItems){
 
-            setItems(savedItems)
+            // The items from localStorage are changed only if its the first login of the day
+            const updatedItems = resetTaskValues(savedItems);
+
+            setItems(updatedItems);
 
 
-            if(savedItems.length === 0){
+            if(updatedItems.length === 0){
 
                 changeEmptyListMsgDisplay("block");
             }
         }
 
     },[]);
+
+    // Delete regular done tasks, and set all habits as undone if it is the first login in the day.
+    function resetTaskValues(savedItems){
+
+        if( isItTheFirstLoginToday() ){
+
+            let filteredItems = savedItems.filter(item => item.done === false || item.habit);
+
+            filteredItems.map(item => item.done = false);
+
+            return filteredItems;
+
+        } else {
+
+            return savedItems
+        }
+        
+
+    }
 
 
     // Every time the array with the items update...
@@ -90,11 +165,14 @@ function App(){
 
 
     // Adding new task
-    function onAddItem(text, important) {
+    function onAddItem(text, habit) {
+        let date = getDate()
 
-        let it = new Item(text, important);
+        let it = new Item(text, habit, date.day, date.month, date.year);
 
         setItems([it, ...items]);
+        
+        console.log(`${date.day}/${date.month}/${date.year}`)
 
         changeEmptyListMsgDisplay("none");
 
@@ -133,10 +211,10 @@ function App(){
             let completedTasksNumber = doneItems.length;
             document.getElementsByClassName("panelItemNumber")[1].innerHTML=completedTasksNumber;
 
-            // important number
-            let importantItems = items.filter(it=>it.important);
-            let importantTasksNumber = importantItems.length;
-            document.getElementsByClassName("panelItemNumber")[2].innerHTML=importantTasksNumber;
+            // habits number
+            let habits = items.filter(it=>it.habit);
+            let habitTasksNumber = habits.length;
+            document.getElementsByClassName("panelItemNumber")[2].innerHTML=habitTasksNumber;
         }
 
 

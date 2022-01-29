@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from "./ListItem";
 
 function HabitList(props){
-    let habits = props.items.filter(it=> it.important);
+    let habits = props.items.filter(it=> it.habit);
 
     return(
         <div className="habitsList flex-column">

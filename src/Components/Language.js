@@ -89,6 +89,13 @@ const words = [
         english: "Name <i class='bi bi-pencil-fill'></i>"
     },
     {
+        id: ".habitsQuickDescription",
+
+        portuguease: "Hábitos se repetem todo dia, enquanto tarefas normais são apagadas no dia seguinte em que elas forem completadas.",
+
+        english: "Habits repeats everyday, while normal tasks are automatically deleted in the next day after they get done."
+    },
+    {
         id: ".habitInputDescription",
         portuguease: "Hábito <i class='bi bi-star-fill'></i> :",
         english: "Habit <i class='bi bi-star-fill'></i> :"

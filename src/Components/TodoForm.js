@@ -14,10 +14,10 @@ function TodoForm(props){
         event.preventDefault();
         
         if(text) {
-            let importantCheckbox = document.getElementById("importantCheckbox").checked;
+            let habitCheckbox = document.getElementById("importantCheckbox").checked;
             
 
-            props.onAddItem(text, importantCheckbox);
+            props.onAddItem(text, habitCheckbox);
             setText("");
 
             props.hideInputField();
@@ -79,11 +79,14 @@ function TodoForm(props){
                 type="text" onChange={handleChange} value={text}></input>
 
                 {/* habit */}
-                <section className="position-relative d-flex flex-row mt-4">
-                    <h3 className="habitInputDescription inputDescription">Habit <i className="bi bi-star-fill"></i> :</h3>
-                    <label className="position-relative mx-2">
-                        <input type="checkbox" className="customCheckbox" id="importantCheckbox"></input>
-                    </label>
+                <section className="position-relative d-flex flex-column mt-4">
+                    <p className="habitsQuickDescription quick-description fw-bold mb-0">Habits repeats everyday, while normal tasks are automatically deleted in the next day after they get done.</p>
+                    <div className="d-flex flex-row">
+                        <h3 className="habitInputDescription inputDescription">Habit <i className="bi bi-star-fill"></i> :</h3>
+                        <label className="position-relative mx-2">
+                            <input type="checkbox" className="customCheckbox" id="importantCheckbox"></input>
+                        </label>
+                    </div>
                 </section>
 
 
