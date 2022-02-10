@@ -9,8 +9,7 @@ import words from "./Components/Language"
 import "./Todo.css"
 
 
-const SAVED_ITEMS="savedItems"
-
+const SAVED_ITEMS="savedItems";
 function App(){
 
     // ---------- DATES ---------- //
@@ -66,6 +65,12 @@ function App(){
 
 
 
+
+
+
+
+
+
     // ---------- LANGUAGE ---------- //
     useEffect(()=>{
         let language = localStorage.getItem("TODOLIST_language");
@@ -110,6 +115,15 @@ function App(){
     }
 
     // ------- CLOSING LANGUAGE -------- //
+
+
+
+
+
+
+
+
+
 
 
     // ---------- TASK FUNCTIONS ---------- //
@@ -159,6 +173,7 @@ function App(){
     useEffect(()=>{
         // Save it to the localStorage
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
+        console.log("LIST CHANGED")
 
         updateTaskPanelValues();
     }, [items]);
@@ -230,6 +245,16 @@ function App(){
 
 
 
+
+
+
+
+
+
+
+
+
+
     // ---------- FUNCTIONS CONTROLING THE ELEMENTS APPEARENCE ---------- //
      function toggleSidebar(){
         const sidebar = document.getElementsByClassName("sidebar")[0];
@@ -269,6 +294,13 @@ function App(){
         ob.observe(listHeaderH1);
     }, []);
     // ---------- CLOSING FUNCTIONS CONTROLING THE ELEMENTS APPEARENCE ---------- //
+
+
+
+
+
+
+
 
 
 

@@ -37,6 +37,32 @@ const words = [
         english: "Todo"
     },
     {
+        id: "#dropdownMenuButton2",
+        portuguease: "Filtro <i class='bi bi-funnel-fill'></i>",
+
+        english: "Filter <i class='bi bi-funnel-fill'></i>"
+    },
+    {
+        id: ".filterHeader",
+        portuguease: "Ordenar Por",
+        english: "Sort By"
+    },
+    {
+        id: ".simpleTasksFilter",
+        portuguease: "Tarefas simples primeiro",
+        english: "Simple tasks first"
+    },
+    {
+        id: ".habitsFilter",
+        portuguease: "Hábitos primeiro",
+        english: "Habits first"
+    },
+    {
+        id: ".alphabeticallyFilter",
+        portuguease: "Ordem alfabética",
+        english: "Alphabetically"
+    },
+    {
         id: ".emptyListMsgPTag",
         portuguease: "Nenhuma tarefa por aqui :( </br> Crie uma agora e não se esqueça dos seus deveres!",
         english: "You have no tasks yet :( </br> Create a new one to remember your goals!"

@@ -23,7 +23,7 @@ function ListsContainer(props){
             
             <ListHeader></ListHeader>
 
-            <MainList updateTaskDone={props.updateTaskDone} onItemDeleted={props.onItemDeleted} items={props.items} refreshLists={refreshLists}></MainList>
+            <MainList updateTaskDone={props.updateTaskDone} onItemDeleted={props.onItemDeleted} items={props.items} setItems={props.setItems} refreshLists={refreshLists}></MainList>
 
             <HabitList updateTaskDone={props.updateTaskDone} onItemDeleted={props.onItemDeleted} items={props.items} refreshLists={refreshLists}></HabitList>
         </div>
