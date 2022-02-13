@@ -8,15 +8,22 @@ function ListItem(props){
     function getCardElement(e) {
         const itemClass = e.target.className;
         const biTrash = itemClass.search("bi-trash");
-        const trashBtn = itemClass.search("trashBtn")
+        const trashBtn = itemClass.search("trashBtn");
+
+
+        let isCheckboxClicked = false;
+        // If the user clicks in the checkbox, it´s value will not change
+        if(e.target.tagName === "INPUT"){
+            isCheckboxClicked = true;
+        }
         
-        // If there is no className related to the trash button, the task checkbox is changed
+        // If there is no className related to the trash button, the task state(done or not) is changed
         if(trashBtn && biTrash === -1){
             let element = e.target;
             let attr = element.getAttribute("data-id")
             console.log(attr)
 
-            let isCheckboxClicked = false;
+
 
             if(attr == null){
                 element = element.parentNode;
@@ -34,9 +41,7 @@ function ListItem(props){
                         element = element.parentNode;
                         attr = element.getAttribute("data-id");
                         console.log("quarta tentativa")
-                        console.log(attr)
-
-                        isCheckboxClicked =true;
+                        console.log(attr)    
                     }
                 }
             }
@@ -100,7 +105,10 @@ function ListItem(props){
                         <input type="checkbox" defaultChecked></input>
                     </label>
 
-                    <p className="taskTitle text-capitalize mb-0">{props.item.habit? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
+                    <div className="taskInfoContainer d-flex flex-column">
+                        <p className="taskTitle text-capitalize mb-0">{props.item.habit? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
+                        <p className="priorityText">Priority: {props.item.priority}</p>
+                    </div>
 
                 </div>
 
@@ -121,7 +129,10 @@ function ListItem(props){
                         <input type="checkbox"></input>
                     </label>
 
-                    <p className="taskTitle text-capitalize mb-0">{props.item.habit? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
+                    <div className="taskInfoContainer d-flex flex-column">
+                        <p className="taskTitle text-capitalize mb-0">{props.item.habit? <i className="bi bi-star-fill"></i> : ""} {props.item.text}</p>
+                        <p className="priorityText">Priority: {props.item.priority}</p>
+                    </div>
 
                 </div>
 

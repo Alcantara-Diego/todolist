@@ -306,6 +306,9 @@ input[name="priority"]:checked+label{
 .importantTask.taskDone{
     background-color: var(--importantTaskCompletedBackground)!important;
 }
+.taskInfoContainer{
+    margin-left: 28px;
+}
 /*-------------------------*/
 
 
@@ -457,7 +460,6 @@ input[name="priority"]:checked+label{
 .taskTitle{
     max-width: 100%;
     font-size: 1.4em;
-    margin-left: 28px;
     transition: 500ms;
 }
 .taskDone p{
@@ -466,6 +468,10 @@ input[name="priority"]:checked+label{
 }
 .importantTask p{
     color: var(--color1);
+    font-weight: bold;
+}
+.priorityText{
+    color: var(--grayColor);
     font-weight: bold;
 }
 /* ------------------- */
