@@ -120,11 +120,11 @@ function TodoForm(props){
                     <h3 className="priorityDescription inputDescription px-1">Priority:</h3>
                     <div className="priorityOptionsDiv d-flex flex-row align-items-center mx-1">
                         <input type="radio" name="priority" id="opcLow"></input>
-                        <label htmlFor="opcLow" onClick={()=> changePriority("low")}>Low</label>
+                        <label id="opcLowLabel" htmlFor="opcLow" onClick={()=> changePriority("low")}>Low</label>
                         <input type="radio" name="priority" id="opcModerate" defaultChecked></input>
-                        <label htmlFor="opcModerate" onClick={()=> changePriority("moderate")} >Moderate</label>
+                        <label id="opcModerateLabel" htmlFor="opcModerate" onClick={()=> changePriority("moderate")} >Moderate</label>
                         <input type="radio" name="priority" id="opcHigh"></input>
-                        <label htmlFor="opcHigh" onClick={()=> changePriority("high")}>High</label>
+                        <label id="opcHighLabel" htmlFor="opcHigh" onClick={()=> changePriority("high")}>High</label>
                         <div className="priorityArrow"></div>
                     </div>
                 </div>

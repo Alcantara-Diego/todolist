@@ -115,6 +115,26 @@ const words = [
         english: "Name <i class='bi bi-pencil-fill'></i>"
     },
     {
+        id: ".priorityDescription",
+        portuguease: "Prioridade:",
+        english: "Priority:"
+    },
+    {
+        id: "#opcLowLabel",
+        portuguease: "baixa",
+        english: "low"
+    },
+    {
+        id: "#opcModerateLabel",
+        portuguease: "média",
+        english: "moderate"
+    },
+    {
+        id: "#opcHighLabel",
+        portuguease: "alta",
+        english: "high"
+    },
+    {
         id: ".habitsQuickDescription",
 
         portuguease: "Hábitos se repetem todo dia, enquanto tarefas normais são apagadas no dia seguinte em que elas forem completadas.",
