@@ -180,10 +180,10 @@ function App(){
 
 
     // Adding new task
-    function onAddItem(text, habit) {
+    function onAddItem(text, habit, priority) {
         let date = getDate()
 
-        let it = new Item(text, habit, date.day, date.month, date.year);
+        let it = new Item(text, habit, priority, date.day, date.month, date.year);
 
         setItems([it, ...items]);
         

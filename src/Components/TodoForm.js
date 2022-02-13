@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+let priority = "";
 function TodoForm(props){
     const [text, setText] = useState("");
 
@@ -16,20 +17,31 @@ function TodoForm(props){
         if(text) {
             let habitCheckbox = document.getElementById("importantCheckbox").checked;
             
+            if(!priority) priority = "moderate";
 
-            props.onAddItem(text, habitCheckbox);
+            props.onAddItem(text, habitCheckbox, priority);
             setText("");
 
-            props.hideInputField();
-            document.getElementById("importantCheckbox").checked=false;
-
             
+            resetForm();
             alertAnimation("success");
         }else{
             alertAnimation("danger");
         }
 
     };
+
+    function resetForm(){
+
+        props.hideInputField();
+        document.getElementById("importantCheckbox").checked=false;
+
+        document.getElementById("opcModerate").checked=true;
+        const arrow = document.querySelector(".priorityArrow");
+        arrow.classList.remove("highSelected");
+        arrow.classList.remove("lowSelected");
+        priority = "moderate";
+    }
 
     function alertAnimation(alert){
 
@@ -61,6 +73,31 @@ function TodoForm(props){
 
     }
 
+    function changePriority(opc){
+        const arrow = document.querySelector(".priorityArrow");
+
+        switch(opc){
+            case "low":
+                arrow.classList.remove("highSelected");
+                arrow.classList.add("lowSelected");
+                priority ="low";
+                break;
+            case "moderate":
+                arrow.classList.remove("highSelected");
+                arrow.classList.remove("lowSelected");
+                priority = "moderate";
+                break;
+            case "high":
+                arrow.classList.remove("lowSelected");
+                arrow.classList.add("highSelected");
+                priority = "high";
+                break;
+            default:
+                console.log("error")
+        }
+        
+    }
+
 
 
     return(
@@ -77,6 +114,20 @@ function TodoForm(props){
                 <input className="px-2"
                 id="inputValue"
                 type="text" onChange={handleChange} value={text}></input>
+
+                {/* priority */}
+                <div className="d-flex flex-row align-items-center mt-4">
+                    <h3 className="priorityDescription inputDescription px-1">Priority:</h3>
+                    <div className="priorityOptionsDiv d-flex flex-row align-items-center mx-1">
+                        <input type="radio" name="priority" id="opcLow"></input>
+                        <label htmlFor="opcLow" onClick={()=> changePriority("low")}>Low</label>
+                        <input type="radio" name="priority" id="opcModerate" defaultChecked></input>
+                        <label htmlFor="opcModerate" onClick={()=> changePriority("moderate")} >Moderate</label>
+                        <input type="radio" name="priority" id="opcHigh"></input>
+                        <label htmlFor="opcHigh" onClick={()=> changePriority("high")}>High</label>
+                        <div className="priorityArrow"></div>
+                    </div>
+                </div>
 
                 {/* habit */}
                 <section className="position-relative d-flex flex-column mt-4">

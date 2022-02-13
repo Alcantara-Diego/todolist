@@ -110,6 +110,81 @@ form input[type="text"]{
     border: none;
     background-color: rgba(128, 128, 128, 0.418);
 }
+.priorityOptionsDiv{
+    position: relative;
+    width: 235px;
+    height: 30px;
+    font-size: 0.9em;
+}
+input[name="priority"]{
+    display: none;
+}
+input[name="priority"]+label{
+    border: 3px solid var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 2px 5px;
+    text-align: center;
+    font-weight: normal;
+    transition: .2s;
+}
+#opcLow+label{
+    background-color: #2abb2a;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+#opcModerate+label{
+    background-color: yellow;
+    border-left: none;
+    border-right: none;
+}
+#opcHigh+label{
+    background-color: #e42222;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+input[name="priority"]:checked+label{
+    font-weight: bold;
+}
+.priorityArrow{
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%) rotate(46deg);
+    width: 15px;
+    height: 15px;
+    border: 3px solid black;
+    border-right: none;
+    border-bottom: none;
+    transition: .4s;
+}
+.lowSelected{
+    left: 16.5%!important;
+}
+.highSelected{
+    left: 84.5%!important;
+}
+
+
+
+
+
+
+
+/* #opcLow:checked+div.priorityArrow{
+    left: 16%;
+}
+#opcModerate:checked+div.priorityArrow{
+    left: 50%;
+}
+#opcHigh:checked+div.priorityArrow{
+    left: 83%;
+} */
+
 
 /* ---------------------------------------------- */
 
