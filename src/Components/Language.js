@@ -10,6 +10,12 @@ const words = [
         portuguease: "<i class='bi bi-exclamation-triangle-fill'></i> De um nome a tarefa",
         english: "<i class='bi bi-exclamation-triangle-fill'></i> Your task should have a name"
     },
+    {
+        id: ".alert-primary",
+        portuguease: "<i class='bi bi-info-circle-fill'></i> Dica: recarregar a página fará a tradução funcionar melhor",
+
+        english: "<i class='bi bi-info-circle-fill'></i> Tip: Reloading the page will make the translations work better"
+    },
     // Main list
     {
         id: ".listHeaderH1",
@@ -61,6 +67,11 @@ const words = [
         id: ".alphabeticallyFilter",
         portuguease: "Ordem alfabética",
         english: "Alphabetically"
+    },
+    {
+        id: ".priorityFilter",
+        portuguease: "Prioridade",
+        english: "Priority"
     },
     {
         id: ".emptyListMsgPTag",

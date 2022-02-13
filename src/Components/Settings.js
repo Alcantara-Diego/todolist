@@ -71,9 +71,6 @@ function Settings(props){
 
     function changeLanguage(language){
 
-        
-
-
         switch (language) {
             case "english":
 
@@ -89,6 +86,22 @@ function Settings(props){
                 localStorage.setItem("TODOLIST_language", "portuguease");
                 break;
         }
+
+        alertLanguageChange();
+    }
+
+
+
+    function alertLanguageChange(){
+
+        let alert = document.getElementsByClassName("alert-primary")[0];
+
+        alert.style.animation="showAlert 4s";
+
+        setTimeout(()=>{
+            alert.style.animation="none";
+        }, 4100);
+
     }
 
     return(

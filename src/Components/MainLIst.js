@@ -96,7 +96,7 @@ function MainList(props){
                             <button onClick={()=> sortList("alphabetically")}  className="dropdown-item alphabeticallyFilter">Alphabetically</button>
                         </li>
                         <li>
-                            <button onClick={()=> sortList("priority")}  className="dropdown-item alphabeticallyFilter">Priority</button>
+                            <button onClick={()=> sortList("priority")}  className="dropdown-item priorityFilter">Priority</button>
                         </li>
                     </ul>
                 </div>

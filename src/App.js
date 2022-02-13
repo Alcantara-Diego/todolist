@@ -397,6 +397,10 @@ function App(){
             <div className="alert alert-danger" role="alert">
             <i className="bi bi-exclamation-triangle-fill"></i> Your task should have a name
             </div>
+
+            <div className="alert alert-primary" role="alert">
+            <i className="bi bi-info-circle-fill"></i> Tip: Reloading the page will make the translations work better 
+            </div>
             {/* ------------------------ */}
 
             <Sidebar toggleSidebar={toggleSidebar
