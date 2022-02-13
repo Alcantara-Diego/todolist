@@ -40,6 +40,26 @@ function MainList(props){
                 });
                 break;
 
+            case "priority":
+
+                // Filter the high priority items first
+                newOrder = props.items.filter(it=> it.priority === "high");
+
+                // Then the moderate items
+                let moderateItems = props.items.filter(it=> it.priority === "moderate");
+
+                for(let i=0; i < moderateItems.length; i++){
+                    newOrder = [...newOrder, moderateItems[i]];
+                }
+
+                // And finally the low ones
+                remainingItems = props.items.filter(it=> it.priority === "low");
+
+                for(let i=0; i < remainingItems.length; i++){
+                    newOrder = [...newOrder, remainingItems[i]];
+                }
+                break;
+
             default:
                 newOrder = props.items;
         }
@@ -74,6 +94,9 @@ function MainList(props){
                         </li>
                         <li>
                             <button onClick={()=> sortList("alphabetically")}  className="dropdown-item alphabeticallyFilter">Alphabetically</button>
+                        </li>
+                        <li>
+                            <button onClick={()=> sortList("priority")}  className="dropdown-item alphabeticallyFilter">Priority</button>
                         </li>
                     </ul>
                 </div>
