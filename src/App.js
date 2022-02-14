@@ -218,7 +218,8 @@ function App(){
 
         if(isPanelVisible){
             // task Number
-            let taskNumber = items.length;
+            let filteringNormalTasks = items.filter(it=> it.habit === false);
+            let taskNumber = filteringNormalTasks.length;
             document.getElementsByClassName("panelItemNumber")[0].innerHTML=taskNumber;
 
             // done number
