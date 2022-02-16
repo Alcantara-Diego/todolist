@@ -473,6 +473,7 @@ input[name="priority"]:checked+label{
 .priorityText{
     color: var(--grayColor);
     font-weight: bold;
+    margin-bottom: 0;
 }
 /* ------------------- */
 
